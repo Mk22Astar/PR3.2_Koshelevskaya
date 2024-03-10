@@ -14,7 +14,7 @@
 
         <Grid Grid.Row="0" Background="#ff744c88">
             <Image Width="45" HorizontalAlignment="Left" Margin="5" Source="/Resources/kisspng-logo-clip-art-5ae10d88490e92.4932963515246985042993.jpg"/>
-            <Button x:Name="btnBack" HorizontalAlignment="Right" Content="Назад" Click="btnBack_Click"/>
+            <Button x:Name="btnBack" HorizontalAlignment="Left" Content="Назад" Click="btnBack_Click" Height="40" Margin="675,10,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Frame x:Name="FrmMain" Grid.Row="1" NavigationUIVisibility="Hidden" ContentRendered="FrmMain_ContentRendered"/>
     </Grid>

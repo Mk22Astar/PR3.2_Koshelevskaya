@@ -24,7 +24,7 @@ namespace PR3._2_Koshelevskaya
         public MainWindow()
         {
             InitializeComponent();
-            FrmMain.Navigate(new Auto());
+            FrmMain.Navigate(new Autho()); // Переход на страницу авторизации
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

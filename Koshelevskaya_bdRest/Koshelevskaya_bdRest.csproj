@@ -77,7 +77,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Auto.xaml">
+    <Page Include="Pages\Autho.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,8 +87,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\Auto.xaml.cs">
-      <DependentUpon>Auto.xaml</DependentUpon>
+    <Compile Include="Pages\Autho.xaml.cs">
+      <DependentUpon>Autho.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
@@ -126,6 +126,10 @@
     <ProjectReference Include="..\HashPasswords\HashPasswords.csproj">
       <Project>{000c1248-40ab-4512-8608-bf1a1009ba99}</Project>
       <Name>HashPasswords</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Registration\Registration.csproj">
+      <Project>{678f4576-1ca5-4bc9-8323-6ff7d816dcc6}</Project>
+      <Name>Registration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
