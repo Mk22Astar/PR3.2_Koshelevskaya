@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RestoranModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Avtorizaciya">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDPolzovatel" Type="int" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Parol" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bludo">
+          <Key>
+            <PropertyRef Name="IDBluda" />
+          </Key>
+          <Property Name="IDBluda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZenaBluda" Type="money" Nullable="false" />
+          <Property Name="IDTipBluda" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EdiniciIzmereniya">
+          <Key>
+            <PropertyRef Name="IDEdiniciIzmereniya" />
+          </Key>
+          <Property Name="IDEdiniciIzmereniya" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="IDBluda" Type="int" Nullable="false" />
+          <Property Name="Kolichestvo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Polzovateli">
+          <Key>
+            <PropertyRef Name="IDPolzovatelya" />
+          </Key>
+          <Property Name="IDPolzovatelya" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familiya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Imya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDRoli" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prodazhi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="IDBluda" Type="int" Nullable="false" />
+          <Property Name="Ostatok" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prodykti">
+          <Key>
+            <PropertyRef Name="IDProdykta" />
+          </Key>
+          <Property Name="IDProdykta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ostatok" Type="int" Nullable="false" />
+          <Property Name="IDEdiniciIzmereniya" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roli">
+          <Key>
+            <PropertyRef Name="IDRoli" />
+          </Key>
+          <Property Name="IDRoli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazvanie" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sostav">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDBluda" Type="int" Nullable="false" />
+          <Property Name="IDProdykta" Type="int" Nullable="false" />
+          <Property Name="KolichestvoProdykta" Type="int" Nullable="false" />
+          <Property Name="IDEdiniciIzmereniya" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpisokZakupok">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="IDProdykta" Type="int" Nullable="false" />
+          <Property Name="Kolichestvo" Type="int" Nullable="false" />
+          <Property Name="DataZayavku" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipBluda">
+          <Key>
+            <PropertyRef Name="IDTipBluda" />
+          </Key>
+          <Property Name="IDTipBluda" Type="int" Nullable="false" />
+          <Property Name="Nazvanie" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Prodykti__IDEdin__628FA481">
+          <End Role="EdiniciIzmereniya" Type="Self.EdiniciIzmereniya" Multiplicity="1" />
+          <End Role="Prodykti" Type="Self.Prodykti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdiniciIzmereniya">
+              <PropertyRef Name="IDEdiniciIzmereniya" />
+            </Principal>
+            <Dependent Role="Prodykti">
+              <PropertyRef Name="IDEdiniciIzmereniya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sostav__IDEdinic__66603565">
+          <End Role="EdiniciIzmereniya" Type="Self.EdiniciIzmereniya" Multiplicity="1" />
+          <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdiniciIzmereniya">
+              <PropertyRef Name="IDEdiniciIzmereniya" />
+            </Principal>
+            <Dependent Role="Sostav">
+              <PropertyRef Name="IDEdiniciIzmereniya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sostav__IDProdyk__656C112C">
+          <End Role="Prodykti" Type="Self.Prodykti" Multiplicity="1" />
+          <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prodykti">
+              <PropertyRef Name="IDProdykta" />
+            </Principal>
+            <Dependent Role="Sostav">
+              <PropertyRef Name="IDProdykta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avtorizaciya_Polzovateli">
+          <End Role="Polzovateli" Type="Self.Polzovateli" Multiplicity="1" />
+          <End Role="Avtorizaciya" Type="Self.Avtorizaciya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Polzovateli">
+              <PropertyRef Name="IDPolzovatelya" />
+            </Principal>
+            <Dependent Role="Avtorizaciya">
+              <PropertyRef Name="IDPolzovatel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bludo_TipBluda">
+          <End Role="TipBluda" Type="Self.TipBluda" Multiplicity="1" />
+          <End Role="Bludo" Type="Self.Bludo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipBluda">
+              <PropertyRef Name="IDTipBluda" />
+            </Principal>
+            <Dependent Role="Bludo">
+              <PropertyRef Name="IDTipBluda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Bludo">
+          <End Role="Bludo" Type="Self.Bludo" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bludo">
+              <PropertyRef Name="IDBluda" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="IDBluda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Polzovateli_Roli">
+          <End Role="Roli" Type="Self.Roli" Multiplicity="1" />
+          <End Role="Polzovateli" Type="Self.Polzovateli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roli">
+              <PropertyRef Name="IDRoli" />
+            </Principal>
+            <Dependent Role="Polzovateli">
+              <PropertyRef Name="IDRoli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prodazhi_Bludo">
+          <End Role="Bludo" Type="Self.Bludo" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bludo">
+              <PropertyRef Name="IDBluda" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IDBluda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sostav_Bludo">
+          <End Role="Bludo" Type="Self.Bludo" Multiplicity="1" />
+          <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bludo">
+              <PropertyRef Name="IDBluda" />
+            </Principal>
+            <Dependent Role="Sostav">
+              <PropertyRef Name="IDBluda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpisokZakupok_Prodykti">
+          <End Role="Prodykti" Type="Self.Prodykti" Multiplicity="1" />
+          <End Role="SpisokZakupok" Type="Self.SpisokZakupok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prodykti">
+              <PropertyRef Name="IDProdykta" />
+            </Principal>
+            <Dependent Role="SpisokZakupok">
+              <PropertyRef Name="IDProdykta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RestoranModelContainer">
+          <EntitySet Name="Avtorizaciya" EntityType="Self.Avtorizaciya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bludo" EntityType="Self.Bludo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdiniciIzmereniya" EntityType="Self.EdiniciIzmereniya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Polzovateli" EntityType="Self.Polzovateli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prodazhi" EntityType="Self.Prodazhi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prodykti" EntityType="Self.Prodykti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roli" EntityType="Self.Roli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sostav" EntityType="Self.Sostav" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpisokZakupok" EntityType="Self.SpisokZakupok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipBluda" EntityType="Self.TipBluda" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Prodykti__IDEdin__628FA481" Association="Self.FK__Prodykti__IDEdin__628FA481">
+            <End Role="EdiniciIzmereniya" EntitySet="EdiniciIzmereniya" />
+            <End Role="Prodykti" EntitySet="Prodykti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sostav__IDEdinic__66603565" Association="Self.FK__Sostav__IDEdinic__66603565">
+            <End Role="EdiniciIzmereniya" EntitySet="EdiniciIzmereniya" />
+            <End Role="Sostav" EntitySet="Sostav" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sostav__IDProdyk__656C112C" Association="Self.FK__Sostav__IDProdyk__656C112C">
+            <End Role="Prodykti" EntitySet="Prodykti" />
+            <End Role="Sostav" EntitySet="Sostav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avtorizaciya_Polzovateli" Association="Self.FK_Avtorizaciya_Polzovateli">
+            <End Role="Polzovateli" EntitySet="Polzovateli" />
+            <End Role="Avtorizaciya" EntitySet="Avtorizaciya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bludo_TipBluda" Association="Self.FK_Bludo_TipBluda">
+            <End Role="TipBluda" EntitySet="TipBluda" />
+            <End Role="Bludo" EntitySet="Bludo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Bludo" Association="Self.FK_Menu_Bludo">
+            <End Role="Bludo" EntitySet="Bludo" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Polzovateli_Roli" Association="Self.FK_Polzovateli_Roli">
+            <End Role="Roli" EntitySet="Roli" />
+            <End Role="Polzovateli" EntitySet="Polzovateli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prodazhi_Bludo" Association="Self.FK_Prodazhi_Bludo">
+            <End Role="Bludo" EntitySet="Bludo" />
+            <End Role="Prodazhi" EntitySet="Prodazhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sostav_Bludo" Association="Self.FK_Sostav_Bludo">
+            <End Role="Bludo" EntitySet="Bludo" />
+            <End Role="Sostav" EntitySet="Sostav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpisokZakupok_Prodykti" Association="Self.FK_SpisokZakupok_Prodykti">
+            <End Role="Prodykti" EntitySet="Prodykti" />
+            <End Role="SpisokZakupok" EntitySet="SpisokZakupok" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestoranModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Avtorizaciya">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDPolzovatel" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Parol" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Polzovateli" Relationship="Self.FK_Avtorizaciya_Polzovateli" FromRole="Avtorizaciya" ToRole="Polzovateli" />
+        </EntityType>
+        <EntityType Name="Bludo">
+          <Key>
+            <PropertyRef Name="IDBluda" />
+          </Key>
+          <Property Name="IDBluda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZenaBluda" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IDTipBluda" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipBluda" Relationship="Self.FK_Bludo_TipBluda" FromRole="Bludo" ToRole="TipBluda" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_Menu_Bludo" FromRole="Bludo" ToRole="Menu" />
+          <NavigationProperty Name="Prodazhi" Relationship="Self.FK_Prodazhi_Bludo" FromRole="Bludo" ToRole="Prodazhi" />
+          <NavigationProperty Name="Sostav" Relationship="Self.FK_Sostav_Bludo" FromRole="Bludo" ToRole="Sostav" />
+        </EntityType>
+        <EntityType Name="EdiniciIzmereniya">
+          <Key>
+            <PropertyRef Name="IDEdiniciIzmereniya" />
+          </Key>
+          <Property Name="IDEdiniciIzmereniya" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Prodykti" Relationship="Self.FK__Prodykti__IDEdin__628FA481" FromRole="EdiniciIzmereniya" ToRole="Prodykti" />
+          <NavigationProperty Name="Sostav" Relationship="Self.FK__Sostav__IDEdinic__66603565" FromRole="EdiniciIzmereniya" ToRole="Sostav" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDBluda" Type="Int32" Nullable="false" />
+          <Property Name="Kolichestvo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bludo" Relationship="Self.FK_Menu_Bludo" FromRole="Menu" ToRole="Bludo" />
+        </EntityType>
+        <EntityType Name="Polzovateli">
+          <Key>
+            <PropertyRef Name="IDPolzovatelya" />
+          </Key>
+          <Property Name="IDPolzovatelya" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDRoli" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Avtorizaciya" Relationship="Self.FK_Avtorizaciya_Polzovateli" FromRole="Polzovateli" ToRole="Avtorizaciya" />
+          <NavigationProperty Name="Roli" Relationship="Self.FK_Polzovateli_Roli" FromRole="Polzovateli" ToRole="Roli" />
+        </EntityType>
+        <EntityType Name="Prodazhi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDBluda" Type="Int32" Nullable="false" />
+          <Property Name="Ostatok" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bludo" Relationship="Self.FK_Prodazhi_Bludo" FromRole="Prodazhi" ToRole="Bludo" />
+        </EntityType>
+        <EntityType Name="Prodykti">
+          <Key>
+            <PropertyRef Name="IDProdykta" />
+          </Key>
+          <Property Name="IDProdykta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ostatok" Type="Int32" Nullable="false" />
+          <Property Name="IDEdiniciIzmereniya" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EdiniciIzmereniya" Relationship="Self.FK__Prodykti__IDEdin__628FA481" FromRole="Prodykti" ToRole="EdiniciIzmereniya" />
+          <NavigationProperty Name="Sostav" Relationship="Self.FK__Sostav__IDProdyk__656C112C" FromRole="Prodykti" ToRole="Sostav" />
+          <NavigationProperty Name="SpisokZakupok" Relationship="Self.FK_SpisokZakupok_Prodykti" FromRole="Prodykti" ToRole="SpisokZakupok" />
+        </EntityType>
+        <EntityType Name="Roli">
+          <Key>
+            <PropertyRef Name="IDRoli" />
+          </Key>
+          <Property Name="IDRoli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Polzovateli" Relationship="Self.FK_Polzovateli_Roli" FromRole="Roli" ToRole="Polzovateli" />
+        </EntityType>
+        <EntityType Name="Sostav">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDBluda" Type="Int32" Nullable="false" />
+          <Property Name="IDProdykta" Type="Int32" Nullable="false" />
+          <Property Name="KolichestvoProdykta" Type="Int32" Nullable="false" />
+          <Property Name="IDEdiniciIzmereniya" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bludo" Relationship="Self.FK_Sostav_Bludo" FromRole="Sostav" ToRole="Bludo" />
+          <NavigationProperty Name="EdiniciIzmereniya" Relationship="Self.FK__Sostav__IDEdinic__66603565" FromRole="Sostav" ToRole="EdiniciIzmereniya" />
+          <NavigationProperty Name="Prodykti" Relationship="Self.FK__Sostav__IDProdyk__656C112C" FromRole="Sostav" ToRole="Prodykti" />
+        </EntityType>
+        <EntityType Name="SpisokZakupok">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="IDProdykta" Type="Int32" Nullable="false" />
+          <Property Name="Kolichestvo" Type="Int32" Nullable="false" />
+          <Property Name="DataZayavku" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Prodykti" Relationship="Self.FK_SpisokZakupok_Prodykti" FromRole="SpisokZakupok" ToRole="Prodykti" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipBluda">
+          <Key>
+            <PropertyRef Name="IDTipBluda" />
+          </Key>
+          <Property Name="IDTipBluda" Type="Int32" Nullable="false" />
+          <Property Name="Nazvanie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Bludo" Relationship="Self.FK_Bludo_TipBluda" FromRole="TipBluda" ToRole="Bludo" />
+        </EntityType>
+        <Association Name="FK_Avtorizaciya_Polzovateli">
+          <End Role="Polzovateli" Type="Self.Polzovateli" Multiplicity="1" />
+          <End Role="Avtorizaciya" Type="Self.Avtorizaciya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Polzovateli">
+              <PropertyRef Name="IDPolzovatelya" />
+            </Principal>
+            <Dependent Role="Avtorizaciya">
+              <PropertyRef Name="IDPolzovatel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bludo_TipBluda">
+          <End Role="TipBluda" Type="Self.TipBluda" Multiplicity="1" />
+          <End Role="Bludo" Type="Self.Bludo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipBluda">
+              <PropertyRef Name="IDTipBluda" />
+            </Principal>
+            <Dependent Role="Bludo">
+              <PropertyRef Name="IDTipBluda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Bludo">
+          <End Role="Bludo" Type="Self.Bludo" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bludo">
+              <PropertyRef Name="IDBluda" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="IDBluda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prodazhi_Bludo">
+          <End Role="Bludo" Type="Self.Bludo" Multiplicity="1" />
+          <End Role="Prodazhi" Type="Self.Prodazhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bludo">
+              <PropertyRef Name="IDBluda" />
+            </Principal>
+            <Dependent Role="Prodazhi">
+              <PropertyRef Name="IDBluda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sostav_Bludo">
+          <End Role="Bludo" Type="Self.Bludo" Multiplicity="1" />
+          <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bludo">
+              <PropertyRef Name="IDBluda" />
+            </Principal>
+            <Dependent Role="Sostav">
+              <PropertyRef Name="IDBluda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Prodykti__IDEdin__628FA481">
+          <End Role="EdiniciIzmereniya" Type="Self.EdiniciIzmereniya" Multiplicity="1" />
+          <End Role="Prodykti" Type="Self.Prodykti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdiniciIzmereniya">
+              <PropertyRef Name="IDEdiniciIzmereniya" />
+            </Principal>
+            <Dependent Role="Prodykti">
+              <PropertyRef Name="IDEdiniciIzmereniya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sostav__IDEdinic__66603565">
+          <End Role="EdiniciIzmereniya" Type="Self.EdiniciIzmereniya" Multiplicity="1" />
+          <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdiniciIzmereniya">
+              <PropertyRef Name="IDEdiniciIzmereniya" />
+            </Principal>
+            <Dependent Role="Sostav">
+              <PropertyRef Name="IDEdiniciIzmereniya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Polzovateli_Roli">
+          <End Role="Roli" Type="Self.Roli" Multiplicity="1" />
+          <End Role="Polzovateli" Type="Self.Polzovateli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roli">
+              <PropertyRef Name="IDRoli" />
+            </Principal>
+            <Dependent Role="Polzovateli">
+              <PropertyRef Name="IDRoli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sostav__IDProdyk__656C112C">
+          <End Role="Prodykti" Type="Self.Prodykti" Multiplicity="1" />
+          <End Role="Sostav" Type="Self.Sostav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prodykti">
+              <PropertyRef Name="IDProdykta" />
+            </Principal>
+            <Dependent Role="Sostav">
+              <PropertyRef Name="IDProdykta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpisokZakupok_Prodykti">
+          <End Role="Prodykti" Type="Self.Prodykti" Multiplicity="1" />
+          <End Role="SpisokZakupok" Type="Self.SpisokZakupok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prodykti">
+              <PropertyRef Name="IDProdykta" />
+            </Principal>
+            <Dependent Role="SpisokZakupok">
+              <PropertyRef Name="IDProdykta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestoranEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Avtorizaciya" EntityType="Self.Avtorizaciya" />
+          <EntitySet Name="Bludo" EntityType="Self.Bludo" />
+          <EntitySet Name="EdiniciIzmereniya" EntityType="Self.EdiniciIzmereniya" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="Polzovateli" EntityType="Self.Polzovateli" />
+          <EntitySet Name="Prodazhi" EntityType="Self.Prodazhi" />
+          <EntitySet Name="Prodykti" EntityType="Self.Prodykti" />
+          <EntitySet Name="Roli" EntityType="Self.Roli" />
+          <EntitySet Name="Sostav" EntityType="Self.Sostav" />
+          <EntitySet Name="SpisokZakupok" EntityType="Self.SpisokZakupok" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipBluda" EntityType="Self.TipBluda" />
+          <AssociationSet Name="FK_Avtorizaciya_Polzovateli" Association="Self.FK_Avtorizaciya_Polzovateli">
+            <End Role="Polzovateli" EntitySet="Polzovateli" />
+            <End Role="Avtorizaciya" EntitySet="Avtorizaciya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bludo_TipBluda" Association="Self.FK_Bludo_TipBluda">
+            <End Role="TipBluda" EntitySet="TipBluda" />
+            <End Role="Bludo" EntitySet="Bludo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Bludo" Association="Self.FK_Menu_Bludo">
+            <End Role="Bludo" EntitySet="Bludo" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prodazhi_Bludo" Association="Self.FK_Prodazhi_Bludo">
+            <End Role="Bludo" EntitySet="Bludo" />
+            <End Role="Prodazhi" EntitySet="Prodazhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sostav_Bludo" Association="Self.FK_Sostav_Bludo">
+            <End Role="Bludo" EntitySet="Bludo" />
+            <End Role="Sostav" EntitySet="Sostav" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Prodykti__IDEdin__628FA481" Association="Self.FK__Prodykti__IDEdin__628FA481">
+            <End Role="EdiniciIzmereniya" EntitySet="EdiniciIzmereniya" />
+            <End Role="Prodykti" EntitySet="Prodykti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sostav__IDEdinic__66603565" Association="Self.FK__Sostav__IDEdinic__66603565">
+            <End Role="EdiniciIzmereniya" EntitySet="EdiniciIzmereniya" />
+            <End Role="Sostav" EntitySet="Sostav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Polzovateli_Roli" Association="Self.FK_Polzovateli_Roli">
+            <End Role="Roli" EntitySet="Roli" />
+            <End Role="Polzovateli" EntitySet="Polzovateli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sostav__IDProdyk__656C112C" Association="Self.FK__Sostav__IDProdyk__656C112C">
+            <End Role="Prodykti" EntitySet="Prodykti" />
+            <End Role="Sostav" EntitySet="Sostav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpisokZakupok_Prodykti" Association="Self.FK_SpisokZakupok_Prodykti">
+            <End Role="Prodykti" EntitySet="Prodykti" />
+            <End Role="SpisokZakupok" EntitySet="SpisokZakupok" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RestoranModelContainer" CdmEntityContainer="RestoranEntities">
+          <EntitySetMapping Name="Avtorizaciya">
+            <EntityTypeMapping TypeName="RestoranModel.Avtorizaciya">
+              <MappingFragment StoreEntitySet="Avtorizaciya">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDPolzovatel" ColumnName="IDPolzovatel" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Parol" ColumnName="Parol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bludo">
+            <EntityTypeMapping TypeName="RestoranModel.Bludo">
+              <MappingFragment StoreEntitySet="Bludo">
+                <ScalarProperty Name="IDBluda" ColumnName="IDBluda" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+                <ScalarProperty Name="ZenaBluda" ColumnName="ZenaBluda" />
+                <ScalarProperty Name="IDTipBluda" ColumnName="IDTipBluda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdiniciIzmereniya">
+            <EntityTypeMapping TypeName="RestoranModel.EdiniciIzmereniya">
+              <MappingFragment StoreEntitySet="EdiniciIzmereniya">
+                <ScalarProperty Name="IDEdiniciIzmereniya" ColumnName="IDEdiniciIzmereniya" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="RestoranModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="IDBluda" ColumnName="IDBluda" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Polzovateli">
+            <EntityTypeMapping TypeName="RestoranModel.Polzovateli">
+              <MappingFragment StoreEntitySet="Polzovateli">
+                <ScalarProperty Name="IDPolzovatelya" ColumnName="IDPolzovatelya" />
+                <ScalarProperty Name="Familiya" ColumnName="Familiya" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="IDRoli" ColumnName="IDRoli" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prodazhi">
+            <EntityTypeMapping TypeName="RestoranModel.Prodazhi">
+              <MappingFragment StoreEntitySet="Prodazhi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="IDBluda" ColumnName="IDBluda" />
+                <ScalarProperty Name="Ostatok" ColumnName="Ostatok" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prodykti">
+            <EntityTypeMapping TypeName="RestoranModel.Prodykti">
+              <MappingFragment StoreEntitySet="Prodykti">
+                <ScalarProperty Name="IDProdykta" ColumnName="IDProdykta" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+                <ScalarProperty Name="Ostatok" ColumnName="Ostatok" />
+                <ScalarProperty Name="IDEdiniciIzmereniya" ColumnName="IDEdiniciIzmereniya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roli">
+            <EntityTypeMapping TypeName="RestoranModel.Roli">
+              <MappingFragment StoreEntitySet="Roli">
+                <ScalarProperty Name="IDRoli" ColumnName="IDRoli" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sostav">
+            <EntityTypeMapping TypeName="RestoranModel.Sostav">
+              <MappingFragment StoreEntitySet="Sostav">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDBluda" ColumnName="IDBluda" />
+                <ScalarProperty Name="IDProdykta" ColumnName="IDProdykta" />
+                <ScalarProperty Name="KolichestvoProdykta" ColumnName="KolichestvoProdykta" />
+                <ScalarProperty Name="IDEdiniciIzmereniya" ColumnName="IDEdiniciIzmereniya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpisokZakupok">
+            <EntityTypeMapping TypeName="RestoranModel.SpisokZakupok">
+              <MappingFragment StoreEntitySet="SpisokZakupok">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDProdykta" ColumnName="IDProdykta" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+                <ScalarProperty Name="DataZayavku" ColumnName="DataZayavku" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RestoranModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipBluda">
+            <EntityTypeMapping TypeName="RestoranModel.TipBluda">
+              <MappingFragment StoreEntitySet="TipBluda">
+                <ScalarProperty Name="IDTipBluda" ColumnName="IDTipBluda" />
+                <ScalarProperty Name="Nazvanie" ColumnName="Nazvanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

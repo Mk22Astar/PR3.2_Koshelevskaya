@@ -87,6 +87,57 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Avtorizaciya.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bludo.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EdiniciIzmereniya.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Menu.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelRestoran.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRestoran.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelRestoran.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelRestoran.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRestoran.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Polzovateli.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prodazhi.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prodykti.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Roli.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sostav.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SpisokZakupok.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipBluda.cs">
+      <DependentUpon>ModelRestoran.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Autho.xaml.cs">
       <DependentUpon>Autho.xaml</DependentUpon>
     </Compile>
@@ -110,6 +161,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\ModelRestoran.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelRestoran.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="Models\ModelRestoran.edmx.diagram">
+      <DependentUpon>ModelRestoran.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -134,6 +193,19 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\ModelRestoran.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelRestoran.edmx</DependentUpon>
+      <LastGenOutput>ModelRestoran.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelRestoran.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelRestoran.edmx</DependentUpon>
+      <LastGenOutput>ModelRestoran.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
