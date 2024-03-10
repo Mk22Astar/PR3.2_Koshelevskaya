@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper.cs" />
     <Compile Include="Model\Avtorizaciya.cs">
       <DependentUpon>ModelRestoran.tt</DependentUpon>
     </Compile>

@@ -7,11 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koshelevskaya_bdRest", "Kos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashPasswords", "HashPasswords\HashPasswords.csproj", "{000C1248-40AB-4512-8608-BF1A1009BA99}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{DE5E72FF-E711-4418-8200-3DC4327CE2AA}"
-	ProjectSection(SolutionItems) = preProject
-		Helper.cs = Helper.cs
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registration", "Registration\Registration.csproj", "{678F4576-1CA5-4BC9-8323-6FF7D816DCC6}"
 EndProject
 Global
