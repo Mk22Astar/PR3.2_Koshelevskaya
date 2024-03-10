@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koshelevskaya_bdRest", "PR3.2_Koshelevskaya\Koshelevskaya_bdRest.csproj", "{917C30B5-5454-4FD1-B73E-0B695441FA52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Koshelevskaya_bdRest", "Koshelevskaya_bdRest\Koshelevskaya_bdRest.csproj", "{917C30B5-5454-4FD1-B73E-0B695441FA52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashPasswords", "HashPasswords\HashPasswords.csproj", "{000C1248-40AB-4512-8608-BF1A1009BA99}"
 EndProject
