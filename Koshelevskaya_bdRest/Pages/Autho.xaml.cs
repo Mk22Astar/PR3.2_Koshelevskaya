@@ -31,7 +31,7 @@ namespace PR3._2_Koshelevskaya.Pages
 
             txtboxCaptcha.Visibility = Visibility.Hidden; // Скрывыем надпись и
             txtBlokCaptcha.Visibility = Visibility.Hidden; //поле для ввода капчи
-            panelCaptcha.Visibility = Visibility.Hidden;
+           
         }
 
         private void btnEnterGuests_Click(object sender, RoutedEventArgs e)
@@ -78,7 +78,7 @@ namespace PR3._2_Koshelevskaya.Pages
         {
             txtboxCaptcha.Visibility = Visibility.Visible; // Показываем надпись и
             txtBlokCaptcha.Visibility = Visibility.Visible; // поле для ввода капчи
-            panelCaptcha.Visibility = Visibility.Visible;
+            
             Random random = new Random();
             int randmNum = random.Next(0, 3); // Генерируем случайное число от 1 до 3
 
